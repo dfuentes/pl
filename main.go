@@ -3,14 +3,15 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"regexp"
 	"strings"
 )
 
 func main() {
-	conf, err := Load("./test.txt")
+	conf, err := Load(os.ExpandEnv("$HOME/.pl"))
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Could not load config file: ", err)
 	}
 
 	client := NewClient()
