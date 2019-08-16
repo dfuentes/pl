@@ -15,14 +15,12 @@ func main() {
 	}
 
 	client := NewClient()
-
-	comics, err := client.GetNewReleases()
+	comics, err := client.GetPreviousReleases()
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	comics = Filter(comics, conf.Subscriptions)
-
 	for _, c := range comics {
 		fmt.Println(c.Title)
 	}
