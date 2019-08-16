@@ -2,8 +2,6 @@ package main
 
 import (
 	"bufio"
-	"bytes"
-	"io/ioutil"
 	"os"
 )
 
@@ -17,14 +15,9 @@ func Load(path string) (*Config, error) {
 		return nil, err
 	}
 
-	contents, err := ioutil.ReadAll(fd)
-	if err != nil {
-		return nil, err
-	}
-
 	subs := []string{}
 
-	scanner := bufio.NewScanner(bytes.NewReader(contents))
+	scanner := bufio.NewScanner(fd)
 	for scanner.Scan() {
 		subs = append(subs, scanner.Text())
 	}
